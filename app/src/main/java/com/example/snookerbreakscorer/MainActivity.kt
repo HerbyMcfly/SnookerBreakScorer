@@ -133,7 +133,7 @@ class SnookerViewModel : ViewModel() {
                 spokenText.contains("blue") -> { addPoints(5); true }
                 spokenText.contains("pink") -> { addPoints(6); true }
                 spokenText.contains("black") || spokenText.contains("blak") -> { addPoints(7); true }
-                spokenText.contains("miss") || spokenText.contains("mist") -> { endBreak(); true }
+                spokenText.contains("missed") || spokenText.contains("mist") -> { endBreak(); true }
                 else -> false
             }
 
