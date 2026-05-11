@@ -16,6 +16,7 @@ import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
@@ -248,16 +249,41 @@ fun SnookerApp(viewModel: SnookerViewModel, activity: ComponentActivity) {
                 Spacer(modifier = Modifier.height(8.dp))
 
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    listOf("Red" to 1, "Yellow" to 2, "Green" to 3, "Brown" to 4).forEach { (name, pts) ->
-                        Button(onClick = { viewModel.addPoints(pts) }, modifier = Modifier.weight(1f)) {
-                            Text(name)
+                    listOf(
+                        Triple("Red", 1, Color(0xFFE53935)),
+                        Triple("Yellow", 2, Color(0xFFFFEB3B)),
+                        Triple("Green", 3, Color(0xFF43A047)),
+                        Triple("Brown", 4, Color(0xFF8D6E63))
+                    ).forEach { (name, pts, color) ->
+                        Button(
+                            onClick = { viewModel.addPoints(pts) },
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = color,
+                                contentColor = if (name == "Yellow") Color.Black else Color.White
+                            ),
+                            contentPadding = PaddingValues(horizontal = 4.dp, vertical = 8.dp)
+                        ) {
+                            Text(name, fontSize = 12.sp)
                         }
                     }
                 }
                 Row(horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                    listOf("Blue" to 5, "Pink" to 6, "Black" to 7).forEach { (name, pts) ->
-                        Button(onClick = { viewModel.addPoints(pts) }, modifier = Modifier.weight(1f)) {
-                            Text(name)
+                    listOf(
+                        Triple("Blue", 5, Color(0xFF1E88E5)),
+                        Triple("Pink", 6, Color(0xFFF06292)),
+                        Triple("Black", 7, Color(0xFF212121))
+                    ).forEach { (name, pts, color) ->
+                        Button(
+                            onClick = { viewModel.addPoints(pts) },
+                            modifier = Modifier.weight(1f),
+                            colors = ButtonDefaults.buttonColors(
+                                containerColor = color,
+                                contentColor = Color.White
+                            ),
+                            contentPadding = PaddingValues(horizontal = 4.dp, vertical = 8.dp)
+                        ) {
+                            Text(name, fontSize = 12.sp)
                         }
                     }
                 }
